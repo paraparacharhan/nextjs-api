@@ -6,6 +6,7 @@ export default function Home() {
       <p>クリープランド美術館の作品を見られるサイトです。</p>
       <ul>
         <li><Link href="/artworks">作品一覧</Link></li>
+        <li><Link href="/about">このサイトについて</Link></li>
       </ul>
     </main>
   );
