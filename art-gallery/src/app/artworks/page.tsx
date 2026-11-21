@@ -1,7 +1,15 @@
+"use client";
+import { useState } from "react";
 export default function ArtworksPage() {
+    const [page, setPage] = useState(1);
     return (
         <main>
             <h1>作品一覧</h1>
+            <div>
+                <button type="button" onClick={() => setPage(page - 1)}>前へ</button>
+                <span>{page} ページ目</span>
+                <button type="button" onClick={() => setPage(page + 1)}>次へ</button>
+            </div>
         </main>
     );
 }
