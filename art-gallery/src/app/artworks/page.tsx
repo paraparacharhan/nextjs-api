@@ -1,14 +1,23 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { fetchArtworks } from "@/clients/artApi";
+import type { Artwork } from "@/types/artwork";
 export default function ArtworksPage() {
     const [page, setPage] = useState(1);
-    const [moment, setMoment] = useState("");
+    const [keyword, setKeyword] = useState("");
+    const [artworks, setArtworks] = useState<Artwork[]>([]);
+    useEffect(() => {
+        async function load() {
+            setArtworks(await fetchArtworks(page));
+        }
+        load();
+    }, [page]);
     return (
         <main>
             <h1>作品一覧</h1>
             <div>
-                <input type="text" value={moment} onChange={e => setMoment(e.target.value)} />
-                <p>「{moment}」で検索します</p>
+                <input type="text" value={keyword} onChange={e => setKeyword(e.target.value)} />
+                <p>「{keyword}」で検索します</p>
             </div>
             <div>
                 <button type="button" onClick={() => setPage(page - 1)} disabled={
