@@ -19,6 +19,11 @@ export default function ArtworksPage() {
                 <input type="text" value={keyword} onChange={e => setKeyword(e.target.value)} />
                 <p>「{keyword}」で検索します</p>
             </div>
+            <ul>
+                {artworks.map((artwork) => (
+                    <li key={artwork.id}>{artwork.title}</li>
+                ))}
+            </ul>
             <div>
                 <button type="button" onClick={() => setPage(page - 1)} disabled={
                     page === 1
