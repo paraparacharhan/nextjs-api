@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import { fetchArtworks } from "@/clients/artApi";
 import type { Artwork } from "@/types/artwork";
+import ArtworkCard from "@/components/ArtworkCard";
 export default function ArtworksPage() {
     const [page, setPage] = useState(1);
     const [keyword, setKeyword] = useState("");
@@ -23,11 +24,11 @@ export default function ArtworksPage() {
                     setPage(1);
                 }}>検索</button>
             </div>
-            <ul>
+            <div>
                 {artworks.map((artwork) => (
-                    <li key={artwork.id}>{artwork.title}</li>
+                    <ArtworkCard key={artwork.id} artwork={artwork} />
                 ))}
-            </ul>
+            </div>
             <div>
                 <button type="button" onClick={() => setPage(page - 1)} disabled={
                     page === 1
