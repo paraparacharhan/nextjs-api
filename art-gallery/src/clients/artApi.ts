@@ -10,7 +10,11 @@ async function getData<T>(url: string): Promise<T> {
     const json: { data: T } = await res.json();
     return json.data;
 }
-export function fetchArtworks(page: number): Promise<Artwork[]> {
+export function fetchArtworks(page: number, query: string = ""): Promise<Artwork[]> {
     const offset = (page - 1) * LIMIT;
-    return getData<Artwork[]>(`${API}/?skip=${offset}&limit=${LIMIT}&has_image=1&fields=${LIST_FIELDS}`);
+    let parseQuery = "";
+    if (query !== "") {
+        parseQuery = "&q=" + encodeURIComponent(query);
+    }
+    return getData<Artwork[]>(`${API}/?skip=${offset}&limit=${LIMIT}&has_image=1&fields=${LIST_FIELDS}${parseQuery}`);
 }

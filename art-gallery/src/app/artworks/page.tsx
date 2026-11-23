@@ -6,18 +6,22 @@ export default function ArtworksPage() {
     const [page, setPage] = useState(1);
     const [keyword, setKeyword] = useState("");
     const [artworks, setArtworks] = useState<Artwork[]>([]);
+    const [query, setQuery] = useState("");
     useEffect(() => {
         async function load() {
-            setArtworks(await fetchArtworks(page));
+            setArtworks(await fetchArtworks(page, query));
         }
         load();
-    }, [page]);
+    }, [page, query]);
     return (
         <main>
             <h1>作品一覧</h1>
             <div>
                 <input type="text" value={keyword} onChange={e => setKeyword(e.target.value)} />
-                <p>「{keyword}」で検索します</p>
+                <button type="button" onClick={() => {
+                    setQuery(keyword);
+                    setPage(1);
+                }}>検索</button>
             </div>
             <ul>
                 {artworks.map((artwork) => (
@@ -31,6 +35,6 @@ export default function ArtworksPage() {
                 <span>{page} ページ目</span>
                 <button type="button" onClick={() => setPage(page + 1)}>次へ</button>
             </div>
-        </main>
+        </main >
     );
 }
