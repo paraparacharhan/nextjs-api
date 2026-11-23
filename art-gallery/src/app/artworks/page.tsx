@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { fetchArtworks } from "@/clients/artApi";
 import type { Artwork } from "@/types/artwork";
 import ArtworkCard from "@/components/ArtworkCard";
+import Pagination from "@/components/Pagination";
 export default function ArtworksPage() {
     const [page, setPage] = useState(1);
     const [keyword, setKeyword] = useState("");
@@ -30,11 +31,7 @@ export default function ArtworksPage() {
                 ))}
             </div>
             <div>
-                <button type="button" onClick={() => setPage(page - 1)} disabled={
-                    page === 1
-                }>前へ</button>
-                <span>{page} ページ目</span>
-                <button type="button" onClick={() => setPage(page + 1)}>次へ</button>
+                <Pagination page={page} onChange={setPage} />
             </div>
         </main >
     );
