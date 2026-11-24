@@ -1,0 +1,8 @@
+.details {
+    display: grid;
+    grid-template-columns: 6em 1fr;
+}
+
+.details>dt {
+    font-weight: bold;
+}

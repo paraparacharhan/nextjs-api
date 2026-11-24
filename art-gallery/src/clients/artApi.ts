@@ -1,4 +1,5 @@
 import type { Artwork } from "@/types/artwork";
+import type { ArtworkDetail } from "@/types/artwork";
 const API = "https://openaccess-api.clevelandart.org/api/artworks";
 const LIST_FIELDS = "id,title,creators,images";
 const LIMIT = 12;
@@ -18,6 +19,6 @@ export function fetchArtworks(page: number, query: string = ""): Promise<Artwork
     }
     return getData<Artwork[]>(`${API}/?skip=${offset}&limit=${LIMIT}&has_image=1&fields=${LIST_FIELDS}${parseQuery}`);
 }
-export function fetchArtwork(id: string): Promise<Artwork> {
-    return getData<Artwork>(`${API}/${id}`);
+export function fetchArtwork(id: string): Promise<ArtworkDetail> {
+    return getData<ArtworkDetail>(`${API}/${id}`);
 }
