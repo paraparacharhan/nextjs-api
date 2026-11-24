@@ -1,10 +1,11 @@
 import type { Artwork } from "@/types/artwork";
+import styles from "./ArtworkCard.module.css";
 export default function ArtworkCard({ artwork }: { artwork: Artwork }) {
     return (
-        <div>
-            <img src={artwork.images.web.url} alt={artwork.title} width={200} />
-            <p>{artwork.title}</p>
-            <p>{artwork.creators.map((creator) => creator.description).join("、")}</p>
+        <div className={styles.card}>
+            <img src={artwork.images.web.url} alt={artwork.title} className={styles.image} />
+            <p className={styles.title}>{artwork.title}</p>
+            <p className={styles.artist}>{artwork.creators.map((creator) => creator.description).join("、")}</p>
         </div>
     )
 }

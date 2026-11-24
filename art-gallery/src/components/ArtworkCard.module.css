@@ -1,0 +1,23 @@
+.card {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+.image {
+    width: 100%;
+    aspect-ratio: 1;
+    object-fit: cover;
+}
+
+.title {
+    font-weight: bold;
+}
+
+.artist {
+    font-size: 14px;
+    color: #666;
+}

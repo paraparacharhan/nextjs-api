@@ -4,6 +4,7 @@ import { fetchArtworks } from "@/clients/artApi";
 import type { Artwork } from "@/types/artwork";
 import ArtworkCard from "@/components/ArtworkCard";
 import Pagination from "@/components/Pagination";
+import styles from "./page.module.css";
 export default function ArtworksPage() {
     const [page, setPage] = useState(1);
     const [keyword, setKeyword] = useState("");
@@ -16,7 +17,7 @@ export default function ArtworksPage() {
         load();
     }, [page, query]);
     return (
-        <main>
+        <main className={styles.main}>
             <h1>作品一覧</h1>
             <div>
                 <input type="text" value={keyword} onChange={e => setKeyword(e.target.value)} />
@@ -25,7 +26,7 @@ export default function ArtworksPage() {
                     setPage(1);
                 }}>検索</button>
             </div>
-            <div>
+            <div className={styles.grid}>
                 {artworks.map((artwork) => (
                     <ArtworkCard key={artwork.id} artwork={artwork} />
                 ))}
