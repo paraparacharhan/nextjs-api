@@ -5,6 +5,7 @@ import type { Artwork } from "@/types/artwork";
 import ArtworkCard from "@/components/ArtworkCard";
 import Pagination from "@/components/Pagination";
 import styles from "./page.module.css";
+import Link from "next/link";
 export default function ArtworksPage() {
     const [page, setPage] = useState(1);
     const [keyword, setKeyword] = useState("");
@@ -28,7 +29,9 @@ export default function ArtworksPage() {
             </div>
             <div className={styles.grid}>
                 {artworks.map((artwork) => (
-                    <ArtworkCard key={artwork.id} artwork={artwork} />
+                    <Link key={artwork.id} href={`/artworks/${artwork.id}`}>
+                        <ArtworkCard key={artwork.id} artwork={artwork} />
+                    </Link>
                 ))}
             </div>
             <div>
